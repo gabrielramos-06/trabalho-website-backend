@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Horários da Turma</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f9; padding: 40px; }
+        .container { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); max-width: 600px; margin: auto; }
+        h1 { color: #333; text-align: center; border-bottom: 2px solid #007bff; padding-bottom: 10px; margin-bottom: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
+        th { background-color: #007bff; color: white; }
+        tr:hover { background-color: #f1f1f1; }
+        .btn-voltar { text-decoration: none; color: white; background-color: #6c757d; padding: 10px; border-radius: 5px; display: block; text-align: center; margin-top: 20px; font-weight: bold;}
+        .btn-voltar:hover { background-color: #5a6268; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 th:text="'Grade da Turma: ' + ${turma.codigo}"></h1>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Disciplina</th>
+                    <th>Professor</th>
+                    <th>Dia</th>
+                    <th>Horário</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="h : ${horarios}">
+                    <td th:text="${h.disciplina.nome}"></td>
+                    <td th:text="${h.professor.nome}"></td>
+                    <td th:text="${h.diaSemana}"></td>
+                    <td th:text="${h.horaInicio} + ' às ' + ${h.horaFim}"></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <a class="btn-voltar" href="/consultas/turma">Voltar</a>
+    </div>
+</body>
+</html>

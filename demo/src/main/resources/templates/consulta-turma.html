@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Consultar Turma</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f9; padding: 40px; }
+        .container { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); max-width: 500px; margin: auto; }
+        h1 { color: #333; text-align: center; border-bottom: 2px solid #007bff; padding-bottom: 10px; }
+        ul { list-style-type: none; padding: 0; }
+        li { margin: 10px 0; }
+        .btn-turma { text-decoration: none; color: #fff; background-color: #007bff; padding: 12px; border-radius: 5px; display: block; text-align: center; font-weight: bold; }
+        .btn-turma:hover { background-color: #0056b3; }
+        .aviso { text-align: center; color: #777; font-style: italic; margin: 20px 0; }
+        .btn-voltar { text-decoration: none; color: white; background-color: #6c757d; padding: 10px; border-radius: 5px; display: block; text-align: center; margin-top: 20px;}
+        .btn-voltar:hover { background-color: #5a6268; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Selecione uma Turma</h1>
+        
+        <p th:if="${#lists.isEmpty(turmas)}" class="aviso">Nenhuma turma cadastrada no sistema no momento.</p>
+
+        <ul th:unless="${#lists.isEmpty(turmas)}">
+            <li th:each="turma : ${turmas}">
+                <a class="btn-turma" th:href="@{/consultas/turma/{id}(id=${turma.id})}" th:text="${turma.codigo}"></a>
+            </li>
+        </ul>
+
+        <a class="btn-voltar" href="/consultas/professor">Voltar para Professores</a>
+    </div>
+</body>
+</html>

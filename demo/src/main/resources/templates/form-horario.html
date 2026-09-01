@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Horário</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f9; padding: 40px; }
+        .container { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); max-width: 400px; margin: auto; }
+        input[type="text"], input[type="time"], select { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        .btn-salvar { width: 100%; padding: 10px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
+        .erro { color: red; font-size: 12px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Cadastro de Horário</h1>
+        
+        <form th:action="@{/horarios/salvar}" th:object="${horario}" method="post">
+            <input type="hidden" th:field="*{id}">
+            
+            <label>Dia da Semana:</label>
+            <select th:field="*{diaSemana}">
+                <option value="Segunda-feira">Segunda-feira</option>
+                <option value="Terça-feira">Terça-feira</option>
+                <option value="Quarta-feira">Quarta-feira</option>
+                <option value="Quinta-feira">Quinta-feira</option>
+                <option value="Sexta-feira">Sexta-feira</option>
+            </select>
+            
+            <label>Hora Início:</label>
+            <input type="time" th:field="*{horaInicio}">
+            <p th:if="${#fields.hasErrors('horaInicio')}" th:errors="*{horaInicio}" class="erro"></p>
+
+            <label>Hora Fim:</label>
+            <input type="time" th:field="*{horaFim}">
+            <p th:if="${#fields.hasErrors('horaFim')}" th:errors="*{horaFim}" class="erro"></p>
+
+            <label>Professor:</label>
+            <select th:field="*{professor}">
+                <option th:each="p : ${professores}" th:value="${p.id}" th:text="${p.nome}"></option>
+            </select>
+
+            <label>Disciplina:</label>
+            <select th:field="*{disciplina}">
+                <option th:each="d : ${disciplinas}" th:value="${d.id}" th:text="${d.nome}"></option>
+            </select>
+
+            <label>Turma:</label>
+            <select th:field="*{turma}">
+                <option th:each="t : ${turmas}" th:value="${t.id}" th:text="${t.codigo}"></option>
+            </select>
+
+            <button type="submit" class="btn-salvar">Salvar</button>
+        </form>
+        <br>
+        <a href="/horarios">Voltar para a lista</a>
+    </div>
+</body>
+</html>
