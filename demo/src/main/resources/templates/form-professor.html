@@ -16,12 +16,10 @@
         <h1>Cadastro de Professor</h1>
         
         <form th:action="@{/professores/salvar}" th:object="${professor}" method="post">
-            <!-- Campo oculto para o ID (necessário para edição) -->
             <input type="hidden" th:field="*{id}">
             
             <label>Nome do Professor:</label>
             <input type="text" th:field="*{nome}" placeholder="Digite o nome completo">
-            <!-- Aqui a validação do @NotBlank aparece na tela se o usuário deixar vazio -->
             <p th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" class="erro"></p>
             
             <button type="submit" class="btn-salvar">Salvar</button>
