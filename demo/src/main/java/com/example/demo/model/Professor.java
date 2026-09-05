@@ -16,7 +16,6 @@ public class Professor {
     @NotBlank(message = "O nome é obrigatório")
     private String nome;
 
-    // Abaixo estão os Getters e Setters (eles permitem que o sistema leia e grave esses dados)
     public Long getId() {
         return id;
     }
