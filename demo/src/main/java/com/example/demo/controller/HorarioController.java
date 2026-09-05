@@ -30,14 +30,14 @@ public class HorarioController {
     @GetMapping("/novo")
     public String novo(Model model) {
         model.addAttribute("horario", new Horario());
-        carregarListas(model); // Carrega opções pro formulário
+        carregarListas(model); 
         return "form-horario";
     }
 
     @PostMapping("/salvar")
     public String salvar(@Valid Horario horario, BindingResult result, Model model) {
         if (result.hasErrors()) {
-            carregarListas(model); // Se der erro, recarrega as listas pro select não quebrar
+            carregarListas(model); 
             return "form-horario";
         }
         horarioRepository.save(horario);
@@ -57,7 +57,6 @@ public class HorarioController {
         return "redirect:/horarios";
     }
 
-    // Método auxiliar para não repetir código
     private void carregarListas(Model model) {
         model.addAttribute("professores", professorRepository.findAll());
         model.addAttribute("turmas", turmaRepository.findAll());
