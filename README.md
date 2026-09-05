@@ -36,8 +36,3 @@ Siga os passos abaixo para testar o sistema em sua máquina.
 - `Inicie o servidor local executando a classe principal DemoApplication.java`
 - `Acesse o sistema abrindo o seu navegador no endereço http://localhost:8080`
 - `/consultas/professor;/consultas/turma;/professores;/turmas;/disciplinas;/horarios`
-
-## Funcionalidades implementadas
-- Cadastro de dados;
-- Visualização de horários por professor;
-- Visualização de horários por turma;
