@@ -16,7 +16,7 @@ public class Disciplina {
     @NotBlank(message = "O nome da disciplina é obrigatório")
     private String nome;
 
-    // Getters e Setters
+    
     public Long getId() {
         return id;
     }
