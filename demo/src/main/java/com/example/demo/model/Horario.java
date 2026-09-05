@@ -15,15 +15,14 @@ public class Horario {
     private Long id;
 
     @NotBlank(message = "O dia da semana é obrigatório")
-    private String diaSemana; // Ex: Segunda-feira
+    private String diaSemana; 
 
     @NotBlank(message = "O horário de início é obrigatório")
-    private String horaInicio; // Ex: 08:00
+    private String horaInicio; 
 
     @NotBlank(message = "O horário de fim é obrigatório")
-    private String horaFim; // Ex: 10:00
+    private String horaFim; 
 
-    // O @ManyToOne faz a mágica de conectar várias aulas a um único professor/turma/disciplina
     @ManyToOne
     private Professor professor;
 
@@ -33,7 +32,6 @@ public class Horario {
     @ManyToOne
     private Turma turma;
 
-    // --- Abaixo estão todos os Getters e Setters ---
 
     public Long getId() {
         return id;
