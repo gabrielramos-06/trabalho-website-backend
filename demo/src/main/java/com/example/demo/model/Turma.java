@@ -16,7 +16,6 @@ public class Turma {
     @NotBlank(message = "O código/nome da turma é obrigatório")
     private String codigo;
 
-    // Getters e Setters
     public Long getId() {
         return id;
     }
