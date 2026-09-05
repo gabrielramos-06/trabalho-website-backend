@@ -16,38 +16,33 @@ public class ProfessorController {
     @Autowired
     private ProfessorRepository repository;
 
-    // Tela de listagem (Lê os dados)
     @GetMapping
     public String listar(Model model) {
         model.addAttribute("professores", repository.findAll());
         return "lista-professores";
     }
 
-    // Tela de formulário vazio (Criar)
     @GetMapping("/novo")
     public String novo(Model model) {
         model.addAttribute("professor", new Professor());
         return "form-professor";
     }
 
-    // Ação de salvar no banco (Garante a validação com @Valid)
     @PostMapping("/salvar")
     public String salvar(@Valid Professor professor, BindingResult result) {
         if (result.hasErrors()) {
-            return "form-professor"; // Volta pro formulário se houver erro (ex: nome vazio)
+            return "form-professor";
         }
         repository.save(professor);
-        return "redirect:/professores"; // Redireciona para a lista após salvar
+        return "redirect:/professores"; 
     }
 
-    // Tela de edição com os dados preenchidos (Atualizar)
     @GetMapping("/editar/{id}")
     public String editar(@PathVariable Long id, Model model) {
         model.addAttribute("professor", repository.findById(id).orElseThrow());
         return "form-professor";
     }
 
-    // Ação de exclusão (Deletar)
     @GetMapping("/excluir/{id}")
     public String excluir(@PathVariable Long id) {
         repository.deleteById(id);
